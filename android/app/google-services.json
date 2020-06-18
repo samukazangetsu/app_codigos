@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1081912221905",
+    "firebase_url": "https://app-codigos-75538.firebaseio.com",
+    "project_id": "app-codigos-75538",
+    "storage_bucket": "app-codigos-75538.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081912221905:android:ad52d59824a8c3b13be5f0",
+        "android_client_info": {
+          "package_name": "br.com.sam.app_codigos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081912221905-3hq4can81cea684ko2sgqno5vaumec0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG4I-0adv58FrmPMJOYBd8EPn9zTfF6-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081912221905-3hq4can81cea684ko2sgqno5vaumec0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
