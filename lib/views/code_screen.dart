@@ -1,6 +1,7 @@
 import 'package:app_codigos/datas/code_data.dart';
 import 'package:app_codigos/models/code_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class CodeScreen extends StatefulWidget {
   @override
@@ -10,7 +11,8 @@ class CodeScreen extends StatefulWidget {
 class _CodeScreenState extends State<CodeScreen> {
   // Controladores dos TextForm
   final _codeController = TextEditingController();
-  final _priceController = TextEditingController();
+  final _maskController =
+      MoneyMaskedTextController(decimalSeparator: '.', thousandSeparator: ',');
 
   // Global Keys
   final _formKey = GlobalKey<FormState>();
@@ -57,7 +59,7 @@ class _CodeScreenState extends State<CodeScreen> {
                           labelText: "Preço",
                           prefixText: "R\$",
                           prefixStyle: TextStyle()),
-                      controller: _priceController,
+                      controller: _maskController,
                       validator: (text) {
                         if (text.isEmpty || text.length == 0)
                           return "Insira um valor";
@@ -100,7 +102,8 @@ class _CodeScreenState extends State<CodeScreen> {
                     CodeData codeData = CodeData();
                     codeData.code = _codeController.text;
                     codeData.type = dropdownValue;
-                    codeData.price = _priceController.text;
+                    double _price = double.parse(_maskController.text);
+                    codeData.price = _price;
                     CodeModel.addCode(codeData, dropdownValue);
                     _snack();
                     _clearAll();
@@ -125,7 +128,7 @@ class _CodeScreenState extends State<CodeScreen> {
   void _clearAll() {
     setState(() {
       _codeController.text = "";
-      _priceController.text = "";
+      _maskController.text = "";
     });
   }
 }

@@ -5,7 +5,7 @@ class CodeData {
   String code;
   String id;
   String type;
-  String price;
+  double price;
 
   CodeData();
 
