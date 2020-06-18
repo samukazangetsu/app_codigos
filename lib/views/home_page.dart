@@ -23,13 +23,19 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: Colors.black, fontSize: 35.0),
             ),
           ),
-          RaisedButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => CodeScreen()));
-            },
-            child: Text("Entrar"),
-          )
+          SizedBox(
+            width: 200.0,
+            height: 50.0,
+            child: RaisedButton(
+              color: Colors.red[200],
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => CodeScreen()));
+              },
+              child: Text("Entrar",
+                  style: TextStyle(color: Colors.white, fontSize: 24.0)),
+            ),
+          ),
         ],
       ),
     );

@@ -47,7 +47,10 @@ class _CodeScreenState extends State<CodeScreen> {
                     // Input código
                     TextFormField(
                       decoration: InputDecoration(
-                          labelText: "Código", border: OutlineInputBorder()),
+                          labelText: "Código",
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black))),
                       controller: _codeController,
                       validator: (text) {
                         if (text.isEmpty || text.length == 0)
@@ -64,11 +67,14 @@ class _CodeScreenState extends State<CodeScreen> {
                           labelText: "Preço",
                           prefixText: "R\$",
                           prefixStyle: TextStyle(),
-                          border: OutlineInputBorder()),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black))),
                       controller: _maskController,
                       validator: (text) {
-                        if (text.isEmpty || text.length == 0 || !(text == "0.00"))
-                          return "Insira um valor";
+                        if (text.isEmpty ||
+                            text.length == 0 ||
+                            !(text == "0.00")) return "Insira um valor";
                       },
                     ),
                     Row(
@@ -83,7 +89,7 @@ class _CodeScreenState extends State<CodeScreen> {
                               elevation: 16,
                               underline: Container(
                                 height: 2,
-                                color: Colors.blueAccent,
+                                color: Colors.red,
                               ),
                               onChanged: (String newValue) {
                                 setState(() {
@@ -110,7 +116,7 @@ class _CodeScreenState extends State<CodeScreen> {
                 width: 200.0,
                 height: 50.0,
                 child: RaisedButton(
-                  color: Colors.red[200],
+                  color: Colors.red[500],
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       CodeData codeData = CodeData();
@@ -123,7 +129,8 @@ class _CodeScreenState extends State<CodeScreen> {
                       _clearAll();
                     }
                   },
-                  child: Text("Enviar", style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                  child: Text("Enviar",
+                      style: TextStyle(color: Colors.white, fontSize: 24.0)),
                 ),
               )
             ],
