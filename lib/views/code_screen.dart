@@ -28,6 +28,7 @@ class _CodeScreenState extends State<CodeScreen> {
         appBar: AppBar(
           title: Text("Códigos TV Box"),
           centerTitle: true,
+          backgroundColor: Colors.redAccent[200],
         ),
         body: Form(
           key: _formKey,
@@ -45,12 +46,16 @@ class _CodeScreenState extends State<CodeScreen> {
                   children: <Widget>[
                     // Input código
                     TextFormField(
-                      decoration: InputDecoration(labelText: "Código"),
+                      decoration: InputDecoration(
+                          labelText: "Código", border: OutlineInputBorder()),
                       controller: _codeController,
                       validator: (text) {
                         if (text.isEmpty || text.length == 0)
                           return "Insira um código";
                       },
+                    ),
+                    SizedBox(
+                      height: 15.0,
                     ),
                     // Input valor
                     TextFormField(
@@ -58,10 +63,11 @@ class _CodeScreenState extends State<CodeScreen> {
                       decoration: InputDecoration(
                           labelText: "Preço",
                           prefixText: "R\$",
-                          prefixStyle: TextStyle()),
+                          prefixStyle: TextStyle(),
+                          border: OutlineInputBorder()),
                       controller: _maskController,
                       validator: (text) {
-                        if (text.isEmpty || text.length == 0)
+                        if (text.isEmpty || text.length == 0 || !(text == "0.00"))
                           return "Insira um valor";
                       },
                     ),
@@ -75,6 +81,10 @@ class _CodeScreenState extends State<CodeScreen> {
                               value: dropdownValue,
                               icon: Icon(Icons.arrow_drop_down),
                               elevation: 16,
+                              underline: Container(
+                                height: 2,
+                                color: Colors.blueAccent,
+                              ),
                               onChanged: (String newValue) {
                                 setState(() {
                                   dropdownValue = newValue;
@@ -96,20 +106,25 @@ class _CodeScreenState extends State<CodeScreen> {
                   ],
                 ),
               ),
-              RaisedButton(
-                onPressed: () {
-                  if (_formKey.currentState.validate()) {
-                    CodeData codeData = CodeData();
-                    codeData.code = _codeController.text;
-                    codeData.type = dropdownValue;
-                    double _price = double.parse(_maskController.text);
-                    codeData.price = _price;
-                    CodeModel.addCode(codeData, dropdownValue);
-                    _snack();
-                    _clearAll();
-                  }
-                },
-                child: Text("Enviar"),
+              SizedBox(
+                width: 200.0,
+                height: 50.0,
+                child: RaisedButton(
+                  color: Colors.red[200],
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      CodeData codeData = CodeData();
+                      codeData.code = _codeController.text;
+                      codeData.type = dropdownValue;
+                      double _price = double.parse(_maskController.text);
+                      codeData.price = _price;
+                      CodeModel.addCode(codeData, dropdownValue);
+                      _snack();
+                      _clearAll();
+                    }
+                  },
+                  child: Text("Enviar", style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                ),
               )
             ],
           ),

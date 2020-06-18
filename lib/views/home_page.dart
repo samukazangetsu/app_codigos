@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Códigos TV Box"),
         centerTitle: true,
+        backgroundColor: Colors.red,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
