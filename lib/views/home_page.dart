@@ -1,3 +1,4 @@
+import 'package:app_codigos/models/push_model.dart';
 import 'package:flutter/material.dart';
 
 import 'code_screen.dart';
@@ -29,6 +30,7 @@ class HomePage extends StatelessWidget {
             child: RaisedButton(
               color: Colors.red[200],
               onPressed: () {
+                final notification = FirebaseNotifications(person).setUpFirebase();
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => CodeScreen()));
               },
@@ -39,5 +41,9 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void person(String person){
+    print("person $person");
   }
 }

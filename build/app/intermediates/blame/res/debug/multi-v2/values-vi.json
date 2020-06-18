@@ -4,6 +4,23 @@
             "outputFile": "C:\\Users\\Samy\\Desktop\\Sam\\flutter_projects\\app_codigos\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Samy\\.gradle\\caches\\transforms-2\\files-2.1\\0ca70b45e4a139e38236c53c9a0cbb89\\jetified-firebase-messaging-20.0.1\\res\\values-vi\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "207",
+                        "endColumns": "98",
+                        "endOffsets": "305"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "2852",
+                        "endColumns": "102",
+                        "endOffsets": "2950"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Samy\\.gradle\\caches\\transforms-2\\files-2.1\\765d948781557ca60ad60520b9d583b2\\core-1.1.0\\res\\values-vi\\values-vi.xml",
                     "from": {
                         "startLines": "2",
@@ -13,11 +30,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "21",
                         "startColumns": "4",
-                        "startOffsets": "2852",
+                        "startOffsets": "2955",
                         "endColumns": "100",
-                        "endOffsets": "2948"
+                        "endOffsets": "3051"
                     }
                 },
                 {
