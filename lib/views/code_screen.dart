@@ -1,5 +1,6 @@
 import 'package:app_codigos/datas/code_data.dart';
 import 'package:app_codigos/models/code_model.dart';
+import 'package:app_codigos/models/push_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 
@@ -72,9 +73,9 @@ class _CodeScreenState extends State<CodeScreen> {
                               borderSide: BorderSide(color: Colors.black))),
                       controller: _maskController,
                       validator: (text) {
-                        if (text.isEmpty ||
-                            text.length == 0 ||
-                            !(text == "0.00")) return "Insira um valor";
+                        double _priceText = double.parse(text);
+                        if (text.isEmpty || _priceText == 0.00)
+                          return "Insira um valor";
                       },
                     ),
                     Row(
@@ -132,6 +133,21 @@ class _CodeScreenState extends State<CodeScreen> {
                   child: Text("Enviar",
                       style: TextStyle(color: Colors.white, fontSize: 24.0)),
                 ),
+              ),
+              SizedBox(
+                height: 25.0,
+              ),
+              SizedBox(
+                width: 200.0,
+                height: 50.0,
+                child: RaisedButton(
+                  color: Colors.red[500],
+                  onPressed: () {
+                    CodeModel.deleteCode();
+                  },
+                  child: Text("Excluir",
+                      style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                ),
               )
             ],
           ),
@@ -150,7 +166,7 @@ class _CodeScreenState extends State<CodeScreen> {
   void _clearAll() {
     setState(() {
       _codeController.text = "";
-      _maskController.text = "";
+      _maskController.text = "0.00";
     });
   }
 }
