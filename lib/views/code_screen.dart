@@ -1,6 +1,7 @@
 import 'package:app_codigos/datas/code_data.dart';
 import 'package:app_codigos/models/code_model.dart';
 import 'package:app_codigos/models/push_model.dart';
+import 'package:app_codigos/views/sended_codes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 
@@ -135,18 +136,21 @@ class _CodeScreenState extends State<CodeScreen> {
                 ),
               ),
               SizedBox(
-                height: 25.0,
+                height: 100.0,
               ),
               SizedBox(
                 width: 200.0,
                 height: 50.0,
                 child: RaisedButton(
-                  color: Colors.red[500],
+                  color: Colors.blueGrey,
                   onPressed: () {
-                    CodeModel.deleteCode();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SendedCodesScreen()));
                   },
-                  child: Text("Excluir",
-                      style: TextStyle(color: Colors.white, fontSize: 24.0)),
+                  child: Text("Ver Códigos Vendidos",
+                      style: TextStyle(color: Colors.white, fontSize: 16.0)),
                 ),
               )
             ],
