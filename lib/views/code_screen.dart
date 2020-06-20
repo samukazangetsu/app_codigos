@@ -34,124 +34,147 @@ class _CodeScreenState extends State<CodeScreen> {
         ),
         body: Form(
           key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: Stack(
             children: <Widget>[
-              Text(
-                "Insira seus códigos aqui!",
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              Container(
+                color: Colors.grey[200],
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(50.0, 25.0, 50.0, 10.0),
-                child: Column(
-                  children: <Widget>[
-                    // Input código
-                    TextFormField(
-                      decoration: InputDecoration(
-                          labelText: "Código",
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black))),
-                      controller: _codeController,
-                      validator: (text) {
-                        if (text.isEmpty || text.length == 0)
-                          return "Insira um código";
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "INSIRA SEUS CÓDIGOS AQUI",
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Card(
+                          margin: EdgeInsets.all(15.0),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 25.0, vertical: 30.0),
+                            child: Column(
+                              children: <Widget>[
+                                // Input código
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                      labelText: "Código",
+                                      border: OutlineInputBorder(),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black))),
+                                  controller: _codeController,
+                                  validator: (text) {
+                                    if (text.isEmpty || text.length == 0)
+                                      return "Insira um código";
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                // Input valor
+                                TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                      labelText: "Preço",
+                                      prefixText: "R\$",
+                                      prefixStyle: TextStyle(),
+                                      border: OutlineInputBorder(),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black))),
+                                  controller: _maskController,
+                                  validator: (text) {
+                                    double _priceText = double.parse(text);
+                                    if (text.isEmpty || _priceText == 0.00)
+                                      return "Insira um valor";
+                                  },
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text("Tempo de validade:"),
+                                    Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: DropdownButton<String>(
+                                          value: dropdownValue,
+                                          icon: Icon(Icons.arrow_drop_down),
+                                          elevation: 16,
+                                          underline: Container(
+                                            height: 2,
+                                            color: Colors.red,
+                                          ),
+                                          onChanged: (String newValue) {
+                                            setState(() {
+                                              dropdownValue = newValue;
+                                            });
+                                          },
+                                          items: <String>[
+                                            '1 mês',
+                                            '3 meses',
+                                            '1 ano'
+                                          ].map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: Text(value),
+                                            );
+                                          }).toList()),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 200.0,
+                                  height: 50.0,
+                                  child: RaisedButton(
+                                    color: Colors.red[500],
+                                    onPressed: () {
+                                      if (_formKey.currentState.validate()) {
+                                        CodeData codeData = CodeData();
+                                        codeData.code = _codeController.text;
+                                        codeData.type = dropdownValue;
+                                        double _price =
+                                            double.parse(_maskController.text);
+                                        codeData.price = _price;
+                                        CodeModel.addCode(
+                                            codeData, dropdownValue);
+                                        _snack();
+                                        _clearAll();
+                                      }
+                                    },
+                                    child: Text("Enviar",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24.0)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  SizedBox(
+                    width: 200.0,
+                    height: 50.0,
+                    child: RaisedButton(
+                      color: Colors.blueGrey,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SendedCodesScreen()));
                       },
+                      child: Text("Ver Códigos Vendidos",
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 16.0)),
                     ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    // Input valor
-                    TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          labelText: "Preço",
-                          prefixText: "R\$",
-                          prefixStyle: TextStyle(),
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black))),
-                      controller: _maskController,
-                      validator: (text) {
-                        double _priceText = double.parse(text);
-                        if (text.isEmpty || _priceText == 0.00)
-                          return "Insira um valor";
-                      },
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Tempo de validade:"),
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: DropdownButton<String>(
-                              value: dropdownValue,
-                              icon: Icon(Icons.arrow_drop_down),
-                              elevation: 16,
-                              underline: Container(
-                                height: 2,
-                                color: Colors.red,
-                              ),
-                              onChanged: (String newValue) {
-                                setState(() {
-                                  dropdownValue = newValue;
-                                });
-                              },
-                              items: <String>[
-                                '1 mês',
-                                '3 meses',
-                                '1 ano'
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList()),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 200.0,
-                height: 50.0,
-                child: RaisedButton(
-                  color: Colors.red[500],
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      CodeData codeData = CodeData();
-                      codeData.code = _codeController.text;
-                      codeData.type = dropdownValue;
-                      double _price = double.parse(_maskController.text);
-                      codeData.price = _price;
-                      CodeModel.addCode(codeData, dropdownValue);
-                      _snack();
-                      _clearAll();
-                    }
-                  },
-                  child: Text("Enviar",
-                      style: TextStyle(color: Colors.white, fontSize: 24.0)),
-                ),
-              ),
-              SizedBox(
-                height: 100.0,
-              ),
-              SizedBox(
-                width: 200.0,
-                height: 50.0,
-                child: RaisedButton(
-                  color: Colors.blueGrey,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SendedCodesScreen()));
-                  },
-                  child: Text("Ver Códigos Vendidos",
-                      style: TextStyle(color: Colors.white, fontSize: 16.0)),
-                ),
+                  )
+                ],
               )
             ],
           ),

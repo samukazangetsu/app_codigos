@@ -36,18 +36,24 @@ class SendedCodesScreen extends StatelessWidget {
                                 Text(
                                   "Código: ${doc.data["code"]}",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16.0),
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   "Valor: R\$${doc.data["price"]}",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16.0),
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 _vencimento(doc.data["type"]),
                                 Text(
                                   "Email: ${doc.data["email"]}",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16.0),
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             )),
@@ -80,14 +86,21 @@ class SendedCodesScreen extends StatelessWidget {
     if (type == "1 ano") {
       return Text(
           "Data de vencimento: ${_anual.day}/${_anual.month}/${_anual.year}",
-          style: TextStyle(color: Colors.black, fontSize: 16.0));
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold));
     } else if (type == "3 meses") {
       return Text(
           "Data de vencimento: ${_trimestral.day}/${_trimestral.month}/${_trimestral.year}",
-          style: TextStyle(color: Colors.black, fontSize: 16.0));
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold));
     }
     return Text(
         "Data de vencimento: ${_mensal.day}/${_mensal.month}/${_mensal.year}",
-        style: TextStyle(color: Colors.black, fontSize: 16.0));
+        style: TextStyle(
+            color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.bold));
   }
 }

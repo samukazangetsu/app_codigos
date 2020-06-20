@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
             width: 200.0,
             height: 50.0,
             child: RaisedButton(
-              color: Colors.red[200],
+              color: Colors.red,
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => CodeScreen()));
