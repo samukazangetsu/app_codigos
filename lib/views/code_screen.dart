@@ -1,6 +1,5 @@
 import 'package:app_codigos/datas/code_data.dart';
 import 'package:app_codigos/models/code_model.dart';
-import 'package:app_codigos/models/push_model.dart';
 import 'package:app_codigos/views/sended_codes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
