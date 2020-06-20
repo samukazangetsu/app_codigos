@@ -1,4 +1,4 @@
-import 'package:app_codigos/views/home_page.dart';
+import 'package:app_codigos/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,10 +1,12 @@
-import 'package:app_codigos/models/push_model.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-
 import 'code_screen.dart';
 
-class HomePage extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,21 +27,17 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: Colors.black, fontSize: 35.0),
             ),
           ),
-          SizedBox(
-            width: 200.0,
-            height: 50.0,
-            child: RaisedButton(
-              color: Colors.red,
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => CodeScreen()));
-              },
-              child: Text("Entrar",
-                  style: TextStyle(color: Colors.white, fontSize: 24.0)),
-            ),
-          ),
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration(seconds: 3)).then((value) => Navigator.of(context)
+        .pushReplacement(
+            MaterialPageRoute(builder: (context) => CodeScreen())));
   }
 }
