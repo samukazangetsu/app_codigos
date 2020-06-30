@@ -2,7 +2,6 @@ import 'package:app_codigos/datas/code_data.dart';
 import 'package:app_codigos/models/code_model.dart';
 import 'package:app_codigos/views/sended_codes_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 import 'avaliable_codes_screen.dart';
 
@@ -14,8 +13,6 @@ class CodeScreen extends StatefulWidget {
 class _CodeScreenState extends State<CodeScreen> {
   // Controladores dos TextForm
   final _codeController = TextEditingController();
-  final _maskController =
-      MoneyMaskedTextController(decimalSeparator: '.', thousandSeparator: ',');
 
   // Global Keys
   final _formKey = GlobalKey<FormState>();
@@ -55,6 +52,7 @@ class _CodeScreenState extends State<CodeScreen> {
                         children: <Widget>[
                           Card(
                               shape: RoundedRectangleBorder(
+                                  side: BorderSide(color: Colors.black12),
                                   borderRadius: BorderRadius.circular(15.0)),
                               margin: EdgeInsets.all(15.0),
                               child: Padding(
@@ -83,28 +81,7 @@ class _CodeScreenState extends State<CodeScreen> {
                                     SizedBox(
                                       height: 15.0,
                                     ),
-                                    // Input valor
-                                    TextFormField(
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                          labelText: "Preço",
-                                          prefixText: "R\$",
-                                          prefixStyle: TextStyle(),
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.black),
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0))),
-                                      controller: _maskController,
-                                      validator: (text) {
-                                        double _priceText = double.parse(text);
-                                        if (text.isEmpty || _priceText == 0.00)
-                                          return "Insira um valor";
-                                      },
-                                    ),
+
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -155,9 +132,6 @@ class _CodeScreenState extends State<CodeScreen> {
                                             codeData.code =
                                                 _codeController.text;
                                             codeData.type = dropdownValue;
-                                            double _price = double.parse(
-                                                _maskController.text);
-                                            codeData.price = _price;
                                             CodeModel.addCode(
                                                 codeData, dropdownValue);
                                             _snack();
@@ -242,7 +216,7 @@ class _CodeScreenState extends State<CodeScreen> {
   void _clearAll() {
     setState(() {
       _codeController.text = "";
-      _maskController.text = "0.00";
+      // _maskController.text = "0.00";
     });
   }
 }
