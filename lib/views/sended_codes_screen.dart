@@ -1,4 +1,3 @@
-import 'package:app_codigos/views/code_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +19,8 @@ class SendedCodesScreen extends StatelessWidget {
             return ListView(
               children: snapshot.data.documents
                   .map((doc) => Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0)),
                       elevation: 3,
                       color: _color(doc.data["type"]),
                       margin:
