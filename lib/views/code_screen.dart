@@ -132,6 +132,12 @@ class _CodeScreenState extends State<CodeScreen> {
                                             codeData.code =
                                                 _codeController.text;
                                             codeData.type = dropdownValue;
+                                            if (dropdownValue == '1 mês')
+                                              codeData.price = 20.0;
+                                            else if (dropdownValue == '3 meses')
+                                              codeData.price = 60.0;
+                                            else
+                                              codeData.price = 240.0;
                                             CodeModel.addCode(
                                                 codeData, dropdownValue);
                                             _snack();

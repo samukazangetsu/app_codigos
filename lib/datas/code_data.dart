@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CodeData {
-
   String code;
   String id;
   String type;
@@ -13,14 +12,9 @@ class CodeData {
     id = snapshot.documentID;
     code = snapshot.data["code"];
     type = snapshot.data["type"];
-    price = snapshot.data["price"];
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      "code" : code,
-      "type" : type,
-      "price" : price
-    };
+    return {"code": code, "type": type, "price": price};
   }
 }
