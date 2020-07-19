@@ -1,5 +1,4 @@
 import 'package:app_codigos/datas/code_data.dart';
-import 'package:app_codigos/tiles/type_codes_tile.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
