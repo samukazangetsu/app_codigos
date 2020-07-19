@@ -34,6 +34,7 @@ dependencies:
   firebase_messaging: ^6.0.16
   mercadopago_sdk: ^1.1.3
   url_launcher: ^5.0.3
+  clipboard_manager: ^0.0.4
 
 dev_dependencies:
   flutter_test:
